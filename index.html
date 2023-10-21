@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .calculator label, .calculator input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .calculator input {
+            width: 100%;
+            padding: 5px;
+        }
+        .calculator button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+        #hasil {
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Contribution Margin Calculator</h1>
+        
+        <label for="revenue">Total Revenue (RM):</label>
+        <input type="number" id="revenue" placeholder="Enter Total Revenue" step="0.01">
+        
+        <label for="variable-cost">Total Variable Costs (RM):</label>
+        <input type="number" id="variable-cost" placeholder="Enter Total Variable Costs" step="0.01">
+        
+        <button onclick="calculateContributionMargin()">Calculate Contribution Margin</button>
+        
+        <div id="hasil"></div>
+    </div>
+
+    <script>
+        const revenueInput = document.getElementById('revenue');
+        const variableCostInput = document.getElementById('variable-cost');
+        const hasilDiv = document.getElementById('hasil');
+
+        function calculateContributionMargin() {
+            const revenue = parseFloat(revenueInput.value) || 0;
+            const variableCost = parseFloat(variableCostInput.value) || 0;
+
+            if (revenue === 0) {
+                hasilDiv.innerHTML = "Contribution Margin: N/A (Division by zero)";
+            } else {
+                const contributionMargin = ((revenue - variableCost) / revenue) * 100;
+
+                hasilDiv.innerHTML = `Contribution Margin: ${contributionMargin.toFixed(2)}%`;
+            }
+        }
+    </script>
+</body>
+</html>
